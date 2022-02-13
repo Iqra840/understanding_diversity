@@ -28,7 +28,7 @@ st.markdown("Here you’ll have a chance to compare your own personal opinion to
 with st.form("form1", clear_on_submit=True):
     name=st.text_input("Enter full name")
     gender=st.selectbox('What is your gender?',('Male', 'Female', 'Prefer not to say'))
-    location= st.selectbox('What is your location?',('Hong Kong', 'Vancouver', 'Melbourne', 'London', 'New York', 'Sydney'))
+    location= st.selectbox('What is your location?',('Hong Kong', 'Vancouver', 'Karachi','Lahore','Paris', 'United States','Melbourne', 'London', 'New York', 'Sydney'))
     age=st.slider("Enter your age", min_value=10, max_value=100)
     kill=st.slider("On a scale of 0=not bad at all to 5=extremely bad, how bad is it to kill someone?", min_value=1, max_value=5)
     steal=killing_someone=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to steal belongings?", min_value=1, max_value=5)
