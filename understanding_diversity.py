@@ -5,7 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-df=pd.read_excel("/Users/iqraabbasi/Downloads/data.xlsx")
+df=pd.read_excel("data.xlsx")
 total=len(df)
 
 #st.set_page_config(layout="wide")
