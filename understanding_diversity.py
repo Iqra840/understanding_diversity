@@ -65,7 +65,7 @@ with st.form("form1", clear_on_submit=True):
         colors = ['#B6E880',  '#90AD1C', 'lightgreen']
 
 
-        fig = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'},{'type':'domain'}]],width=1200, height=400)
+        fig = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'},{'type':'domain'}]])
         fig.add_trace(go.Pie(labels=['People with your opinion on killing','Other responses'], values=[percent_kill, 100-percent_kill],marker=dict(colors=['#B6E880',  '#90AD1C'], line=dict(color='#000000', width=2)) ),1, 1)
         fig.add_trace(go.Pie(labels=['People with your opinion on stealing','Other responses'], values=[percent_steal, 100-percent_steal],marker=dict(colors=['#F8A19F',  '#E45756'], line=dict(color='#000000', width=2))),1, 2)
         fig.add_trace(go.Pie(labels=['People with your opinion on talking loudly','Other responses'], values=[percent_talk, 100-percent_talk],marker=dict(colors=['#19D3F3',  '#0099C6'], line=dict(color='#000000', width=2))),1, 3)
