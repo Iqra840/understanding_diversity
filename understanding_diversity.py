@@ -32,7 +32,7 @@ with st.form("form1", clear_on_submit=True):
     age=st.slider("Enter your age", min_value=10, max_value=100)
     kill=st.slider("On a scale of 0=not bad at all to 5=extremely bad, how bad is it to kill someone?", min_value=1, max_value=5)
     steal=killing_someone=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to steal belongings?", min_value=1, max_value=5)
-    loud=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to talk loudly in public?", min_value=1, max_value=5)
+    talk=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to talk loudly in public?", min_value=1, max_value=5)
 
     submit=st.form_submit_button("Submit")
 
@@ -60,9 +60,6 @@ with st.form("form1", clear_on_submit=True):
         display=("**" + str(percent_talk)+ "**" + "% of people agree with you on the severity of talking loudly in public")
         st.markdown(display)
 
-
-
-        colors = ['#B6E880',  '#90AD1C', 'lightgreen']
 
 
         fig = make_subplots(rows=1, cols=3, specs=[[{'type':'domain'}, {'type':'domain'},{'type':'domain'}]])
