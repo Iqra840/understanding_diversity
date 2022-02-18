@@ -4,7 +4,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
-df=pd.read_excel("data.xlsx")
+st.set_page_config(layout="wide")
+df=pd.read_excel("/Users/iqraabbasi/Desktop/data.xlsx")
 total=len(df)
 index_ = ['Not at all', 'A little bad', 'Somewhat bad', 'Very bad', 'Extremely bad']
 
@@ -58,6 +59,24 @@ def show_plots():
     name_Ld_kill=Ld_df_kill.index.values.tolist() 
     values_Ld_kill = Ld_df_kill.tolist()
 
+    # Define pie charts
+    fig = make_subplots(rows=1, cols=3, specs=specs)
+    fig.add_trace(go.Pie(labels=name_HK_kill, values=values_HK_kill, name='Starry Night',title='Opinion on killing someone: Hong Kong',
+                        marker_colors=blues), 1, 1)
+    fig.add_trace(go.Pie(labels=name_Mb_kill, values=values_Mb_kill, name='Sunflowers',title='Opinion on killing someone: Melbourne',
+                        marker_colors=reds), 1, 2)
+    fig.add_trace(go.Pie(labels=name_Ld_kill, values=values_Ld_kill, name='Irises',title='Opinion on killing someone: London',
+                        marker_colors=greens), 1, 3)
+
+    # Tune layout and hover info
+    fig.update_traces(hoverinfo='label+percent', textinfo='none')
+    fig.update(layout_title_text='Opinions on killing someone by location',
+            layout_showlegend=False)
+
+    fig = go.Figure(fig)
+    st.plotly_chart(fig, use_container_width=True)
+    ###########################################################################################################
+
     filter_HK_talk =  df['Location']=="Hong Kong"
     HK_df = df[filter_HK_talk]
     HK_len=len(HK_df)
@@ -67,7 +86,7 @@ def show_plots():
         if i not in HK_df_talk.index:
             HK_df_talk[float(i)] = 0
     HK_df_talk.sort_index()
-    HK_df_talk
+
 
     HK_df_talk.index = index_
     name_HK_talk=HK_df_talk.index.values.tolist() 
@@ -101,7 +120,6 @@ def show_plots():
     values_Ld_talk = Ld_df_talk.tolist()
 
 
-
     # Define pie charts
     fig3 = make_subplots(rows=1, cols=3, specs=specs)
     fig3.add_trace(go.Pie(labels=name_HK_talk, values=values_HK_talk, name='Starry Night',title='Opinion on talk loudly: Hong Kong',
@@ -117,25 +135,75 @@ def show_plots():
             layout_showlegend=False)
 
     fig3 = go.Figure(fig3)
-    fig3.show()
+    st.plotly_chart(fig3, use_container_width=True)
+  
 
+    ###########################################################################################################
+
+
+    filter_HK_steal =  df['Location']=="Hong Kong"
+    HK_df = df[filter_HK_steal]
+    HK_len=len(HK_df)
+    HK_df_steal=HK_df['Steal'].value_counts()
+    options=[1.0,2.0,3.0,4.0,5.0]
+    for i in options:
+        if i not in HK_df_steal.index:
+            HK_df_steal[float(i)] = 0
+    HK_df_steal.sort_index()
+   
+
+    HK_df_steal.index = index_
+    name_HK_steal=HK_df_steal.index.values.tolist() 
+    values_HK_steal = HK_df_steal.tolist()
+
+
+    filter_Mb =  df['Location']=="Melbourne"
+    Mb_df = df[filter_Mb]
+    Mb_len=len(Mb_df)
+    Mb_df_steal=Mb_df['Steal'].value_counts()
+    options=[1.0,2.0,3.0,4.0,5.0]
+    for i in options:
+        if i not in Mb_df_steal.index:
+            Mb_df_steal[float(i)] = 0
+    Mb_df_steal.sort_index()
+    Mb_df_steal.index = index_
+    name_Mb_steal=Mb_df_steal.index.values.tolist() 
+    values_Mb_steal = Mb_df_steal.tolist()
+
+    filter_Ld =  df['Location']=="London"
+    Ld_df = df[filter_Ld]
+    Ld_len=len(Ld_df)
+    Ld_df_steal=Ld_df['Steal'].value_counts()
+    options=[1.0,2.0,3.0,4.0,5.0]
+    for i in options:
+        if i not in Ld_df_steal.index:
+            Ld_df_steal[float(i)] = 0
+    Ld_df_steal.sort_index()
+    Ld_df_steal.index = index_
+    name_Ld_steal=Ld_df_steal.index.values.tolist() 
+    values_Ld_steal = Ld_df_steal.tolist()
 
     # Define pie charts
-    fig = make_subplots(rows=1, cols=3, specs=specs)
-    fig.add_trace(go.Pie(labels=name_HK_kill, values=values_HK_kill, name='Starry Night',title='Opinion on killing someone: Hong Kong',
+    fig2 = make_subplots(rows=1, cols=3, specs=specs)
+    fig2.add_trace(go.Pie(labels=name_HK_steal, values=values_HK_steal, name='Starry Night',title='Opinion on stealing: Hong Kong',
                         marker_colors=blues), 1, 1)
-    fig.add_trace(go.Pie(labels=name_Mb_kill, values=values_Mb_kill, name='Sunflowers',title='Opinion on killing someone: Melbourne',
+    fig2.add_trace(go.Pie(labels=name_Mb_steal, values=values_Mb_steal, name='Sunflowers',title='Opinion on stealing: Melbourne',
                         marker_colors=reds), 1, 2)
-    fig.add_trace(go.Pie(labels=name_Ld_kill, values=values_Ld_kill, name='Irises',title='Opinion on killing someone: London',
+    fig2.add_trace(go.Pie(labels=name_Ld_steal, values=values_Ld_steal, name='Irises',title='Opinion on stealing: London',
                         marker_colors=greens), 1, 3)
 
     # Tune layout and hover info
-    fig.update_traces(hoverinfo='label+percent', textinfo='none')
-    fig.update(layout_title_text='Opinions on killing someone by location',
+    fig2.update_traces(hoverinfo='label+percent', textinfo='none')
+    fig2.update(layout_title_text='Opinions on Stealing by location',
             layout_showlegend=False)
 
-    fig = go.Figure(fig)
-    fig.show()
+    fig2 = go.Figure(fig2)
+   
+    st.plotly_chart(fig2, use_container_width=True)
+
+
+
+
 
 
 #default responses incase there is no response in form
