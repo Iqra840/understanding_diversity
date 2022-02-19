@@ -5,9 +5,12 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
 st.set_page_config(layout="wide")
-df=pd.read_excel("data.xlsx")
+df=pd.read_excel("/Users/iqraabbasi/Desktop/data.xlsx")
 total=len(df)
 index_ = ['Not at all', 'A little bad', 'Somewhat bad', 'Very bad', 'Extremely bad']
+#You can check .empty documentation
+# Create a page dropdown 
+
 
 # Define color sets of paintings
 reds = ['#F9A7A7', '#FA7A7A','#ECC2C2','#FF5050','#DF8080']
@@ -201,9 +204,28 @@ def show_plots():
    
     st.plotly_chart(fig2, use_container_width=True)
 
+    talk_loudly_violin=df[["Location", "Talk_loudly"]]
+    #talk_loudly_violin["Talk_loudly"]=talk_loudly_violin["Talk_loudly"].astype(str)
+    talk_loudly_violin=talk_loudly_violin.rename(columns={'Talk_loudly': 'Opinions on talking loudly in public'})
+    fig4 = px.violin(talk_loudly_violin,  y="Opinions on talking loudly in public", x="Location", box=True, color="Location", # draw box plot inside the violin
+                    points='all', # can be 'outliers', or False
+                )
+
+    st.plotly_chart(fig4, use_container_width=True)
+
+    talk_loudly_violin=df[["Location", "Age"]]
+    #talk_loudly_violin["Talk_loudly"]=talk_loudly_violin["Talk_loudly"].astype(str)
+    talk_loudly_violin=talk_loudly_violin.rename(columns={'Age': 'Age of respondent by country'})
+    # draw box plot inside the violin
+    fig5 = px.violin(talk_loudly_violin,  y="Age of respondent by country", x="Location", box=True, color="Location",
+                    points='all', # can be 'outliers', or False
+                )
+
+    st.plotly_chart(fig5, use_container_width=True)
 
 
 
+#######################################################################################################
 
 
 #default responses incase there is no response in form
@@ -224,11 +246,14 @@ with st.form("form1", clear_on_submit=True):
     gender=st.selectbox('What is your gender?',('Male', 'Female', 'Prefer not to say'))
     location= st.selectbox('What is your location?',('Hong Kong', 'Vancouver', 'Karachi','Lahore','Paris', 'United States','Melbourne', 'London', 'New York', 'Sydney'))
     age=st.slider("Enter your age", min_value=10, max_value=100)
-    kill=st.slider("On a scale of 0=not bad at all to 5=extremely bad, how bad is it to kill someone?", min_value=1, max_value=5)
-    steal=killing_someone=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to steal belongings?", min_value=1, max_value=5)
-    talk=st.slider("On a scale of 1=not bad at all to 5=extremely bad, how bad is it to talk loudly in public?", min_value=1, max_value=5)
-
+    kill=st.slider("On a scale of 1 = not bad at all to 5 = extremely bad, how bad is it to kill someone?", min_value=1, max_value=5)
+    steal=killing_someone=st.slider("On a scale of 1=not bad at all to 5 = extremely bad, how bad is it to steal belongings?", min_value=1, max_value=5)
+    talk=st.slider("On a scale of 1 = not bad at all to 5 = extremely bad, how bad is it to talk loudly in public?", min_value=1, max_value=5)
+    
     submit=st.form_submit_button("Submit")
+
 
     if submit:
         show_plots()
+
+    
