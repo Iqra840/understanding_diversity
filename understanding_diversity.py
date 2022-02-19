@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.express as px
 st.set_page_config(layout="wide")
-df=pd.read_excel("/Users/iqraabbasi/Desktop/data.xlsx")
+df=pd.read_excel("data.xlsx")
 total=len(df)
 index_ = ['Not at all', 'A little bad', 'Somewhat bad', 'Very bad', 'Extremely bad']
 #You can check .empty documentation
