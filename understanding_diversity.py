@@ -7,7 +7,7 @@ import plotly.express as px
 from st_btn_select import st_btn_select
 st.set_page_config(layout="wide")
 
-df=pd.read_excel("/Users/iqraabbasi/Desktop/data.xlsx")
+df=pd.read_excel("data.xlsx")
 total=len(df)
 
 
